@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DualCamCtrl: Dual-Branch Diffusion Model for Geometry-Aware Camera-Controlled Video Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+  </nav> -->
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">DualCamCtrl: Dual-Branch Diffusion Model for Geometry-Aware
+              Camera-Controlled Video Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="">Hongfei Zhang</a><sup>1*</sup>,</span>
+              <span class="author-block">
+                <a href="https://khao123.github.io/">Kanghao Chen</a><sup>1*</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=BbZ0mwoAAAAJ&hl=en">Zixin Zhang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://haroldchen19.github.io/">Harold H. Chen</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://qc-ly.github.io/">Yuanhuiyi Lyu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Yuqi Zhang</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://andysonys.github.io/">Shuai Yang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://redrock303.github.io/">Kun Zhou</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.yingcong.me/">Ying-Cong Chen</a><sup>1,2</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>HKUST(GZ)</span>
+              <span class="author-block"><sup>2</sup>HKUST</span>
+              <span class="author-block"><sup>3</sup>FDU</span>
+              <span class="author-block"><sup>4</sup>SZU</span>
+
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>*</sup>Equal contribution</span>
+
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <iframe src="static/pdf/dualcam_framework.pdf" width="100%" height="600px"></iframe> -->
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img id="teaser" src="static/images/teasing_cropped.jpg" alt="Teaser Image" style="width:100%; height:auto;">
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">Comparison with state-of-the-art methods:</span>
+          Using a single input image and the same target camera trajectory, our method closely follows the camera motion
+          while delivering the best perceptual quality.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Sidebar Video Section -->
+
+    <!-- Row 3 -->
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box has-text-centered">
+          <h3 class="title is-5">Open World</h3>
+          <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+            <source src="static/videos/dualcamctrl_demo_open.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  <!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+  <!-- 通用样式 -->
+  <style>
+    figure {
+      width: 95%;
+      /* 图片占页面宽度 95% */
+      margin: 1.5em auto;
+      /* 上下间距 1.5em 居中 */
+      text-align: center;
+    }
+
+    figure img {
+      width: 100%;
+      /* 图片自适应容器宽度 */
+      height: auto;
+      display: block;
+      margin: 0 auto 0.5em;
+    }
+
+    figure figcaption {
+      text-align: left;
+      /* 左对齐文字 */
+      font-size: 1em;
+      color: #555;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* 段落对齐 */
+    .content p,
+    .has-text-left p {
+      text-align: justify;
+      /* 正文段落两端对齐 */
+      margin-bottom: 1em;
+    }
+  </style>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper presents <strong>DualCamCtrl</strong>, a novel end-to-end diffusion model for camera-controlled video
+            generation. Recent works have advanced this field by representing camera poses as ray-based conditions,
+            yet they often lack sufficient scene understanding and geometric awareness. <strong>DualCamCtrl</strong> specifically
+            targets this limitation by introducing a dual-branch framework that mutually generates camera-consistent
+            RGB and depth sequences. To harmonize these two modalities, we further propose the <strong>SIGMA</strong> 
+            (SemantIc Guided Mutual Alignment) mechanism, which performs RGB–depth fusion in a semantics-guided and mutually reinforced
+            manner. These designs collectively enable <strong>DualCamCtrl</strong> to better disentangle appearance and geometry
+            modeling, generating videos that more faithfully adhere to the specified camera trajectories.
+            Additionally, we analyze and reveal the distinct influence of depth and camera poses across denoising
+            stages and further demonstrate that early and late stages play complementary roles in forming global
+            structure and refining local details. Extensive experiments demonstrate that <strong>DualCamCtrl</strong> achieves more
+            consistent camera-controlled video generation with over 40% reduction in camera motion errors compared
+            with prior methods. Code will be released upon acceptance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Methods Section -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+
+          <h2 class="title is-3">Methods</h2>
+
+          <!-- Subsection: Overall Framework -->
+          <h3 class="title is-4" style="margin-top:1em;">Overall Framework</h3>
+          <figure>
+            <img src="static/images/dualcam_framework_page.jpg" alt="DualCamCtrl Framework">
+            <figcaption>
+              Overall architecture of <strong>DualCamCtrl</strong>. Dual-branch framework simultaneously generates RGB
+              and
+              depth video latents from an input image and its corresponding depth map. The two latents are element-wise
+              added
+              to the encoded Plücker embedding and concatenated with noise. Subsequently, the two modalities interact
+              through our proposed <strong>SIGMA</strong> mechanism and fusion block. During training, both predictions
+              are supervised by their respective loss functions.
+            </figcaption>
+          </figure>
+
+          <!-- SIGMA Fusion -->
+          <h3 class="title is-4">SIGMA Fusion</h3>
+          <figure>
+            <img src="static/images/misalign_and_sigma_insight_cropped.jpg" alt="Misalignment and SIGMA Insight">
+            <figcaption>
+              <strong>(a) Illustration of modality misalignment.</strong> Independent RGB and depth latent evolution
+              leads to misalignment across frames, motivating the design of <strong>SIGMA</strong> strategy for
+              cross-modal alignment.<br>
+              <strong>(b) Comparison with one-way alignment.</strong> One-way alignment transfers information
+              unidirectionally, leading to misalignment on local semantics.<br>
+              <strong>(c) Comparison with geometry-guided alignment.</strong> Under geometry-guided setting, geometry
+              cues
+              evolve too quickly and become inconsistent with RGB motion.
+            </figcaption>
+          </figure>
+
+          <!-- Two-stage Training Pipeline -->
+          <h3 class="title is-4">Two-stage Training Pipeline</h3>
+          <div class="has-text-left">
+            <p>
+              Our training objective is twofold: enable each modality to develop generative competence and foster
+              effective cross-modal interaction. To achieve this, we adopt a carefully staged schedule that
+              balances the learning dynamics of both modalities:
+              1. <strong>decoupled stage</strong>, where RGB and depth branches are trained independently to
+              capture appearance and geometry cues separately; and
+              2. <strong>fusion stage</strong>, where cross-branch interactions are enabled through a fusion block
+              to exploit complementary strengths.
+            </p>
+
+            <p>
+              In the <strong>decoupled stage</strong>, both branches are initialized from pretrained weights.
+              Depth supervision is provided via state-of-the-art monocular depth estimation, and no cross-modal
+              fusion is applied. This ensures each branch learns its respective cue without interference.
+              Even early in this stage, the depth branch can interpret rough geometry as a hazy image and provide
+              useful conditioning for RGB generation.
+            </p>
+
+            <p>
+              In the <strong>fusion stage</strong>, RGB and depth branches interact via the SIGMA-enabled fusion
+              block. The RGB branch contributes rich appearance cues, while the depth branch provides geometric
+              structure. The fusion block is zero-initialized to allow gradual influence, and the training
+              objective remains the combination of RGB and depth losses.
+            </p>
+
+            <p>
+              Let \(\gamma \in \{0, 1\}\) indicate whether cross-branch fusion is enabled, where \(\gamma = 0\)
+              corresponds to the decoupled stage and \(\gamma = 1\) corresponds to the fusion stage. We define the
+              3D-aware cross features \(h_t^{\mathrm{RGB \rightarrow D}}\) (from RGB to Depth) and
+              \(h_t^{\mathrm{D \rightarrow RGB}}\) (from Depth to RGB), with the corresponding losses for each
+              branch as follows:
+            </p>
+
+            <p>
+              \[
+              \mathcal{L}_{\mathrm{RGB}} =
+              \mathbb{E}\Big[ \big\|
+              v_t^{\mathrm{RGB}} -
+              \theta_{\mathrm{RGB}}( z_t^{\mathrm{RGB}}, t, c, \mathbf{R}, \mathbf{t}; \gamma\, h_t^{\mathrm{D
+              \rightarrow RGB}} )
+              \big\|^2 \Big]
+              \]
+            </p>
+            <p>
+              \[
+              \mathcal{L}_{\mathrm{D}} =
+              \mathbb{E}\left[
+              \left\|
+              v_t^{\mathrm{D}} -
+              \theta_{\mathrm{D}}\left( z_t^{\mathrm{D}}, t, c, \mathbf{R}, \mathbf{t}; \gamma\, h_t^{\mathrm{RGB
+              \rightarrow D}} \right)
+              \right\|^2
+              \right]
+              \]
+            </p>
+            <p>
+              \[
+              \mathcal{L}_{\mathrm{Overall}} = \mathcal{L}_{\mathrm{RGB}} + \lambda \mathcal{L}_{\mathrm{D}}
+              \]
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiments Section -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3" style="text-align:center;">Experiments</h2>
+      <p class="has-text-left">
+        We evaluate our method on the I2V and T2V settings, comparing against state-of-the-art baselines.
+      </p>
+
+      <!-- I2V Comparison -->
+      <figure>
+        <img src="static/images/i2vcompare_cropped.jpg" alt="I2V Quantitative Comparison">
+        <figcaption>
+          Comparison between our method and other state-of-the-art approaches. Given the same camera pose and input
+          image as
+          generation conditions, our method achieves the best alignment between camera motion and scene dynamics,
+          producing the most visually accurate video. The ’+’ signs marked in the figure serve as anchors for visual
+          comparison.
+        </figcaption>
+      </figure>
+
+      <!-- T2V Comparison -->
+      <figure>
+        <img src="static/images/t2v.png" alt="T2V Quantitative Comparison">
+        <figcaption>
+          Quantitative comparisons on <strong>I2V</strong> setting. ↑ / ↓ denotes higher/lower is better. Best and
+          second best results highlighted.
+        </figcaption>
+      </figure>
+
+      <!-- I2V & T2V Input/Output Comparison -->
+      <figure>
+        <img src="static/images/i2v.png" alt="I2V/T2V Comparison">
+        <figcaption>
+          Quantitative comparisons on <strong>T2V</strong> setting across REALESTATE10K and DL3DV.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+      <!-- Row 1 -->
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box has-text-centered">
+          <h3 class="title is-5">Image to Video</h3>
+          <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+            <source src="static/videos/dualcamctrl_demo_i2v.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box has-text-centered">
+          <h3 class="title is-5">Text to Video</h3>
+          <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+            <source src="static/videos/dualcamctrl_demo_t2v.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Related Links -->
+      <div class="columns">
+        <div class="column is-full">
+          <h2 class="title is-3">Related Links</h2>
+
+          <div class="content has-text-justified">
+            <p>
+              Our work builds upon several notable open-source projects, including:
+            </p>
+            <p>
+              <a href="https://github.com/modelscope/DiffSynth-Studio">DiffSynth</a> – a diffusion-based video
+              generation framework supporting both training and inference.
+            </p>
+            <p>
+              <a href="https://github.com/hehao13/CameraCtrl">CameraCtrl</a> and <a
+                href="https://github.com/Inception3D/GenFusion">GenFusion</a> – provide essential data processing
+              pipelines and workflows.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- /Related Links -->
+
+    </div>
+  </section>
+
+
+
+  <!-- <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+    </div>
+  </section> -->
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+              <p>
+              We borrow the code from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, thanks for their wonderful template.
+            </p>
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
