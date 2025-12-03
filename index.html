@@ -5,8 +5,10 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="i9PCYNC5IYaozcEUPU3M_l3c0xPmzDi9Ely6djdJ73E" />
 
-  <meta name="description" content="DualCamCtrl is a state-of-the-art end-to-end diffusion model for camera-controlled video generation, combining RGB and depth sequences with semantic-guided alignment for precise camera trajectory adherence.">
-  <meta name="keywords" content="DualCamCtrl, Camera-Controlled Video, RGB-Depth Fusion, Depth Estimation, SIGMA, Video Generation, 3D Scene Understanding, Geometric Awareness, AI Video Synthesis">
+  <meta name="description"
+    content="DualCamCtrl is a state-of-the-art end-to-end diffusion model for camera-controlled video generation, combining RGB and depth sequences with semantic-guided alignment for precise camera trajectory adherence.">
+  <meta name="keywords"
+    content="DualCamCtrl, Camera-Controlled Video, RGB-Depth Fusion, Depth Estimation, SIGMA, Video Generation, 3D Scene Understanding, Geometric Awareness, AI Video Synthesis">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DualCamCtrl: Dual-Branch Diffusion Model for Geometry-Aware Camera-Controlled Video Generation</title>
   <style>
@@ -35,7 +37,7 @@
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  
+
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -124,7 +126,7 @@
                 <!-- PDF Link -->
                 <span class="link-block" style="position: relative;">
                   <!-- <a href="#" class="external-link button is-normal is-rounded is-dark hover-tba"> -->
-                    <a href="https://arxiv.org/pdf/2511.23127" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://arxiv.org/pdf/2511.23127" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -144,23 +146,24 @@
 
                 <!-- Code Link -->
                 <span class="link-block" style="position: relative;">
-                  <a href="https://github.com/EnVision-Research/DualCamCtrl" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://github.com/EnVision-Research/DualCamCtrl"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
                     <span class="text-label">Code</span>
                   </a>
                 </span>
-              <span class="link-block">
-                <a href="https://huggingface.co/FayeHongfeiZhang/DualCamCtrl" target="_blank" rel="noopener noreferrer"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon" style="font-size:23px">
+                <span class="link-block">
+                  <a href="https://huggingface.co/FayeHongfeiZhang/DualCamCtrl" target="_blank"
+                    rel="noopener noreferrer" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon" style="font-size:23px">
                       &#129303;
-                  </span>
-                  <span>Huggingface</span>
-                </a>
-              </span>
-              <!-- <span class="link-block" style="position: relative;">
+                    </span>
+                    <span>Huggingface</span>
+                  </a>
+                </span>
+                <!-- <span class="link-block" style="position: relative;">
                 <a href="https://huggingface.co" 
                   class="external-link button is-normal is-rounded is-warning"
                   style="display: inline-flex; align-items: center; gap: 8px;">
@@ -226,19 +229,19 @@
   </section>
 
 
-<!-- Sidebar Video Section -->
+  <!-- Sidebar Video Section -->
 
-    <!-- Row 3 -->
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="box has-text-centered">
-          <h3 class="title is-5">Open World Camera-Controlled Video Generation</h3>
-          <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
-            <source src="static/videos/dualcamctrl_demo_open.mp4" type="video/mp4">
-          </video>
-        </div>
+  <!-- Row 3 -->
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="box has-text-centered">
+        <h3 class="title is-5">Open World Camera-Controlled Video Generation</h3>
+        <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+          <source src="static/videos/dualcamctrl_demo_open.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
+  </div>
 
 
 
@@ -339,32 +342,37 @@
   </style>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            This paper presents <strong>DualCamCtrl</strong>, a novel end-to-end diffusion model for camera-controlled video
-            generation. Recent works have advanced this field by representing camera poses as ray-based conditions,
-            yet they often lack sufficient scene understanding and geometric awareness. <strong>DualCamCtrl</strong> specifically
-            targets this limitation by introducing a dual-branch framework that mutually generates camera-consistent
-            RGB and depth sequences. To harmonize these two modalities, we further propose the <strong>SIGMA</strong> 
-            (SemantIc Guided Mutual Alignment) mechanism, which performs RGB–depth fusion in a semantics-guided and mutually reinforced
-            manner. These designs collectively enable <strong>DualCamCtrl</strong> to better disentangle appearance and geometry
-            modeling, generating videos that more faithfully adhere to the specified camera trajectories.
-            Additionally, we analyze and reveal the distinct influence of depth and camera poses across denoising
-            stages and further demonstrate that early and late stages play complementary roles in forming global
-            structure and refining local details. Extensive experiments demonstrate that <strong>DualCamCtrl</strong> achieves more
-            consistent camera-controlled video generation with over 40% reduction in camera motion errors compared
-            with prior methods.
-          </p>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              This paper presents <strong>DualCamCtrl</strong>, a novel end-to-end diffusion model for camera-controlled
+              video
+              generation. Recent works have advanced this field by representing camera poses as ray-based conditions,
+              yet they often lack sufficient scene understanding and geometric awareness. <strong>DualCamCtrl</strong>
+              specifically
+              targets this limitation by introducing a dual-branch framework that mutually generates camera-consistent
+              RGB and depth sequences. To harmonize these two modalities, we further propose the <strong>SIGMA</strong>
+              (SemantIc Guided Mutual Alignment) mechanism, which performs RGB–depth fusion in a semantics-guided and
+              mutually reinforced
+              manner. These designs collectively enable <strong>DualCamCtrl</strong> to better disentangle appearance
+              and geometry
+              modeling, generating videos that more faithfully adhere to the specified camera trajectories.
+              Additionally, we analyze and reveal the distinct influence of depth and camera poses across denoising
+              stages and further demonstrate that early and late stages play complementary roles in forming global
+              structure and refining local details. Extensive experiments demonstrate that <strong>DualCamCtrl</strong>
+              achieves more
+              consistent camera-controlled video generation with over 40% reduction in camera motion errors compared
+              with prior methods.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
@@ -517,29 +525,29 @@
   </section>
 
 
-      <!-- Row 1 -->
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="box has-text-centered">
-          <h3 class="title is-5">Camera-Controlled Image to Video Generation</h3>
-          <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
-            <source src="static/videos/dualcamctrl_demo_i2v.mp4" type="video/mp4">
-          </video>
-        </div>
+  <!-- Row 1 -->
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="box has-text-centered">
+        <h3 class="title is-5">Camera-Controlled Image to Video Generation</h3>
+        <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+          <source src="static/videos/dualcamctrl_demo_i2v.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
+  </div>
 
-    <!-- Row 2 -->
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="box has-text-centered">
-          <h3 class="title is-5">Camera-Controlled Text to Video Generation</h3>
-          <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
-            <source src="static/videos/dualcamctrl_demo_t2v.mp4" type="video/mp4">
-          </video>
-        </div>
+  <!-- Row 2 -->
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="box has-text-centered">
+        <h3 class="title is-5">Camera-Controlled Text to Video Generation</h3>
+        <video poster="" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+          <source src="static/videos/dualcamctrl_demo_t2v.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
+  </div>
 
 
 
@@ -579,15 +587,14 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@misc{zhang2025dualcamctrldualbranchdiffusionmodel,
-      title={DualCamCtrl: Dual-Branch Diffusion Model for Geometry-Aware Camera-Controlled Video Generation}, 
-      author={Hongfei Zhang and Kanghao Chen and Zixin Zhang and Harold Haodong Chen and Yuanhuiyi Lyu and Yuqi Zhang and Shuai Yang and Kun Zhou and Yingcong Chen},
-      year={2025},
-      eprint={2511.23127},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2511.23127}, 
-}</code></pre>
+      <pre><code>
+        @article{zhang2025dualcamctrl,
+  title={DualCamCtrl: Dual-Branch Diffusion Model for Geometry-Aware Camera-Controlled Video Generation},
+  author={Zhang, Hongfei and Chen, Kanghao and Zhang, Zixin and Chen, Harold Haodong and Lyu, Yuanhuiyi and Zhang, Yuqi and Yang, Shuai and Zhou, Kun and Chen, Yingcong},
+  journal={arXiv preprint arXiv:2511.23127},
+  year={2025}
+}
+</code></pre>
     </div>
   </section>
 
@@ -599,8 +606,9 @@
       <div class="columns is-centered">
         <div class="column is-8">
           <div class="content">
-              <p>
-              We borrow the code from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, thanks for their wonderful template.
+            <p>
+              We borrow the code from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, thanks for
+              their wonderful template.
             </p>
             <p>
               This website is licensed under a <a rel="license"
