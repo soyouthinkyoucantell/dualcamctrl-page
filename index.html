@@ -12,6 +12,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DualCamCtrl: Dual-Branch Diffusion Model for Geometry-Aware Camera-Controlled Video Generation</title>
   <style>
+    /* Bibtex citation */
+    .bibtex-box {
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Huggingface icon */
     .fa-huggingface::before {
       content: "";
       display: inline-block;
@@ -36,35 +57,8 @@
 
     gtag('config', 'G-PYVRSFMDRL');
   </script>
-  <style>
-    .bibtex-box {
-      position: relative;
-      background: #f7f7f7;
-      border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    #bibtex-code {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .copy-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #3273dc;
-      color: white;
-      border: none;
-      padding: 5px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-    .copy-btn:hover {
-      background: #2759a5;
-    }
-  </style>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -97,14 +91,19 @@
     </div>
 
   </nav> -->
-<script>
-function copyBibtex() {
-  const code = document.getElementById("bibtex-code").innerText;
-  navigator.clipboard.writeText(code).then(function() {
-    alert("BibTeX copied!");
-  });
-}
-</script>
+  <script>
+    function copyBibtex() {
+      const btn = document.querySelector('.copy-btn');
+      const code = document.getElementById("bibtex-code").innerText;
+
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = "✓";
+        setTimeout(() => {
+          btn.textContent = "Copy";
+        }, 1500);
+      });
+    }
+  </script>
 
   <section class="hero">
     <div class="hero-body">
@@ -115,7 +114,7 @@ function copyBibtex() {
               Camera-Controlled Video Generation</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/hongfei-zhang-2435b2227/">Hongfei Zhang</a><sup>1*</sup>,</span>
+                <a href="https://x.com/hongfeizhang0xF">Hongfei Zhang</a><sup>1*</sup>,</span>
               <span class="author-block">
                 <a href="https://khao123.github.io/">Kanghao Chen</a><sup>1,5*</sup>,</span>
               <span class="author-block">
@@ -619,22 +618,26 @@ function copyBibtex() {
 
 
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      If you find our work useful in your research, please consider citing us:
 
-    <div class="bibtex-box">
-      <button class="copy-btn" onclick="copyBibtex()">Copy</button>
-      <pre><code id="bibtex-code">@article{zhang2025dualcamctrl,
+      <div class="bibtex-box">
+        <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+
+        <pre><code id="bibtex-code">@article{zhang2025dualcamctrl,
   title={DualCamCtrl: Dual-Branch Diffusion Model for Geometry-Aware Camera-Controlled Video Generation},
   author={Zhang, Hongfei and Chen, Kanghao and Zhang, Zixin and Chen, Harold Haodong and Lyu, Yuanhuiyi and Zhang, Yuqi and Yang, Shuai and Zhou, Kun and Chen, Yingcong},
   journal={arXiv preprint arXiv:2511.23127},
   year={2025}
 }
 </code></pre>
+
+      </div>
+
     </div>
-  </div>
-</section>
+  </section>
 
 
   <footer class="footer">
